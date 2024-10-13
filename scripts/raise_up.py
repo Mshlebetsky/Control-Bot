@@ -4,8 +4,7 @@ from selenium.webdriver import Chrome,ChromeOptions,ChromeService
 from selenium.webdriver.common.by import By
 import time
 from selenium import webdriver
-import keyboard
-import multiprocessing
+
 import signal
 
 def authorization(delay=1):
@@ -18,7 +17,7 @@ def authorization(delay=1):
     options.add_argument(f'user-agent={safari_ua}')
     options.add_argument('--disable-blink-features=AutomationControlled')
     # options.add_argument('--headless=new')
-    options.add_argument('--headless=old')
+    # options.add_argument('--headless=old')
     options.add_argument("--window-size=1920,1080")
     try:
         browser = Chrome(options=options)
@@ -63,16 +62,7 @@ def update_all_chapters(browser, chapters_urls, delay):
         update_single_chapter(browser, chapter, delay)
         time.sleep(2)
     return browser
-def exit_check():
-    while True:
-         if keyboard.is_pressed("home"):
-              quit()
-def hook(pid):
-    while True:
-        if keyboard.is_pressed('ctrl + 9'):
-            os.kill(pid,signal.SIGTERM)
-            os._exit(1)
-            #quit()
+
 def inf_upating(chapters_urls, delay_ = 1):
     count = 0
     delay = delay_
