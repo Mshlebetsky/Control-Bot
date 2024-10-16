@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22ce1781-2e0d-4a5b-881f-e5396f0cb870" name="Changes" comment="Second Try">
-      <changelist_data name="Mihail" email="m1shanya148@gmail.com" />
+      <change afterPath="$PROJECT_DIR$/Data/comands.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/urls_for_raise_up.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/open.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/Bot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/Tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/get_comands.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/raise_up.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/raise_up.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +20,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -40,10 +58,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.Bot.executor": "Run",
+    "Python.Tests.executor": "Run",
+    "Python.get_comands.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.open.executor": "Run",
     "Python.raise_up.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "tgBotBranch",
     "last_opened_file_path": "C:/Users/Mihail/Documents/Python/Bots/ControlBot/pythonProject"
   }
 }]]></component>
@@ -96,7 +118,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728828724628</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Second Try">
+      <option name="closed" value="true" />
+      <created>1728832445392</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728832445392</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,6 +152,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Try" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Try" />
+    <MESSAGE value="Second Try" />
+    <option name="LAST_COMMIT_MESSAGE" value="Second Try" />
   </component>
 </project>

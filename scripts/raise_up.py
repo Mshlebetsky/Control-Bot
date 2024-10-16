@@ -6,7 +6,19 @@ import time
 from selenium import webdriver
 
 import signal
-
+def get_chapter_urls():
+    chapters_urls = []
+    file = open('../Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
+    for line in file:
+        # print(line)
+        try:
+            line = line.split(' ')[0]
+        except:
+            line = line
+        if '\n' in line:
+            line = line[:-1]
+        chapters_urls.append(line)
+    return chapters_urls
 def authorization(delay=1):
     safari_ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15'
     my_login = 'Captain_BBPE'
@@ -17,7 +29,7 @@ def authorization(delay=1):
     options.add_argument(f'user-agent={safari_ua}')
     options.add_argument('--disable-blink-features=AutomationControlled')
     # options.add_argument('--headless=new')
-    # options.add_argument('--headless=old')
+    options.add_argument('--headless=old')
     options.add_argument("--window-size=1920,1080")
     try:
         browser = Chrome(options=options)
@@ -57,29 +69,34 @@ def update_single_chapter(browser, url, delay = 1, temp_delay = 5):
     browser.find_element(By.ID, 'sendTranslate').click()
     time.sleep(temp_delay)
     return(browser)
-def update_all_chapters(browser, chapters_urls, delay):
+def update_all_chapters(browser, delay):
+    chapters_urls = get_chapter_urls()
     for chapter in chapters_urls:
         update_single_chapter(browser, chapter, delay)
         time.sleep(2)
     return browser
 
-def inf_upating(chapters_urls, delay_ = 1):
-    count = 0
+def inf_upating(delay_ = 40, working_time_ = 5):
     delay = delay_
     browser = authorization()
-    while delay < 50:
-        # exit_check()
-        time.sleep(delay)
-        try:
-            update_all_chapters(browser, chapters_urls, delay)
+    time_start = time.time()
+    working_time = working_time_ * 60
+    count = 0
+    try:
+        while (delay < (delay_ + 5)) and (time_start + working_time > time.time()):
+            time.sleep(delay)
             count += 1
-            print(f'run the {count}  time was   w successful')
-            delay = delay_
-        except:
-            delay += 1
-            print(f'Error with {delay} attemt')
-    browser.close()
-def close_window():
-    browser = Chrome()
-    browser.close()
-
+            try:
+                update_all_chapters(browser, delay)
+                print(f'run the {count}  time was successful')
+                delay = delay_
+            except:
+                delay += 1
+                print(f'Error with {count} attemt')
+            count += 1
+        browser.close()
+        return f'Обновлено {count} раз за {working_time} минут '
+    except:
+        return f'ошибка на {count} повторении'
+# inf_upating(40, 2)
+# print(get_chapter_urls())
