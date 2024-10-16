@@ -1,14 +1,14 @@
-import pandas as pd
-import os
 from selenium.webdriver import Chrome,ChromeOptions,ChromeService
 from selenium.webdriver.common.by import By
 import time
 from selenium import webdriver
 
-import signal
+
 def get_chapter_urls():
     chapters_urls = []
-    file = open('../Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
+    # file = open('../Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
+    file = open('Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
+
     for line in file:
         # print(line)
         try:
@@ -24,7 +24,6 @@ def authorization(delay=1):
     my_login = 'Captain_BBPE'
     my_pass = '6234m1234M'
 
-    # XPATH_change = ['//*[@id="t53323534"]/div[3]/a[1]/i']
     options = webdriver.ChromeOptions()
     options.add_argument(f'user-agent={safari_ua}')
     options.add_argument('--disable-blink-features=AutomationControlled')
@@ -99,4 +98,4 @@ def inf_upating(delay_ = 40, working_time_ = 5):
     except:
         return f'ошибка на {count} повторении'
 # inf_upating(40, 2)
-# print(get_chapter_urls())
+print(get_chapter_urls())

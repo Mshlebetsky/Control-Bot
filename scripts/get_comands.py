@@ -1,5 +1,5 @@
 def get_comands():
-    file = open('../Data/comands.txt','r',encoding='utf-8')
+    file = open('Data/comands.txt','r',encoding='utf-8')
     comands = []
     description = []
     for line in file:
