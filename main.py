@@ -1,6 +1,5 @@
 import telebot
 import sqlite3
-from scripts import raise_up
 from scripts.raise_up import  inf_upating
 from scripts import get_comands
 bot = telebot.TeleBot('7598997737:AAFZsXKy7NCQjklYSDVzda7QbwTRaRvkotM')
@@ -38,4 +37,5 @@ def raise_up_func_(message):
 
 
 if __name__ == '__main__':
-    bot.polling(non_stop=True)
+    # bot.polling(non_stop=True)
+    bot.infinity_polling(timeout=10, long_polling_timeout=5)

@@ -3,7 +3,7 @@ def get_comands():
     comands = []
     description = []
     for line in file:
-        print(line)
+        # print(line)
         comands.append(line.split('-')[0].replace(' ',''))
 
         description.append(line.split('-')[1].replace('\n',''))

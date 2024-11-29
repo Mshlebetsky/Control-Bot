@@ -92,10 +92,10 @@ def inf_upating(delay_ = 40, working_time_ = 5):
             except:
                 delay += 1
                 print(f'Error with {count} attemt')
-            count += 1
+            # count += 1
         browser.close()
         return f'Обновлено {count} раз за {working_time} минут '
     except:
         return f'ошибка на {count} повторении'
 # inf_upating(40, 2)
-print(get_chapter_urls())
+# print(get_chapter_urls())
