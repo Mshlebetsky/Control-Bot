@@ -1,3 +1,7 @@
+from calendar import error
+from pydoc import browse
+from webbrowser import Error
+
 from selenium.webdriver import Chrome,ChromeOptions,ChromeService
 from selenium.webdriver.common.by import By
 import time
@@ -6,9 +10,12 @@ from selenium import webdriver
 
 def get_chapter_urls():
     chapters_urls = []
-    # file = open('../Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
-    file = open('Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
-
+    try:
+        file = open('../Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
+        # print('1 scenary')
+    except:
+        file = open('Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
+        # print('2 scenary')
     for line in file:
         # print(line)
         try:
@@ -27,17 +34,20 @@ def authorization(delay=1):
     options = webdriver.ChromeOptions()
     options.add_argument(f'user-agent={safari_ua}')
     options.add_argument('--disable-blink-features=AutomationControlled')
-    # options.add_argument('--headless=new')
-    options.add_argument('--headless=old')
+    options.add_argument('--headless=new')
+    # options.add_argument('--headless=old')
     options.add_argument("--window-size=1920,1080")
+    print('pre authorization complete')
     try:
         browser = Chrome(options=options)
+        # print('browser downloaded')
         main_url = 'https://tl.rulate.ru/'
         browser.get(main_url)
+        # print('browser transfered to url')
         time.sleep(delay)
         browser.find_element(By.XPATH, '/html/body/header/div/div[3]/div[2]/div/button').click()
-    except:
-        print('Error with downl. page')
+    except error:
+        print(f'Error with downl. page {error}')
         quit()
     try:
         for ch in my_login:
@@ -78,6 +88,7 @@ def update_all_chapters(browser, delay):
 def inf_upating(delay_ = 40, working_time_ = 5):
     delay = delay_
     browser = authorization()
+    print('authorization complete')
     time_start = time.time()
     working_time = working_time_ * 60
     count = 0
@@ -92,10 +103,11 @@ def inf_upating(delay_ = 40, working_time_ = 5):
             except:
                 delay += 1
                 print(f'Error with {count} attemt')
-            # count += 1
+            count += 1
         browser.close()
         return f'Обновлено {count} раз за {working_time} минут '
     except:
         return f'ошибка на {count} повторении'
-# inf_upating(40, 2)
-# print(get_chapter_urls())
+# inf_upating(40, 20)
+# authorization(3)
+print(get_chapter_urls())
