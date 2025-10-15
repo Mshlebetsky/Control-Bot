@@ -28,14 +28,14 @@ def get_chapter_urls():
     return chapters_urls
 def authorization(delay=1):
     safari_ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15'
-    my_login = 'Captain_BBPE'
+    my_login = 'Egor_Litvin'
     my_pass = '6234m1234M'
 
     options = webdriver.ChromeOptions()
     options.add_argument(f'user-agent={safari_ua}')
     options.add_argument('--disable-blink-features=AutomationControlled')
-    options.add_argument('--headless=new')
-    # options.add_argument('--headless=old')
+    # options.add_argument('--headless=new')
+
     options.add_argument("--window-size=1920,1080")
     print('pre authorization complete')
     try:
