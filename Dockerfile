@@ -31,7 +31,8 @@ RUN apt-get update && apt-get install -y google-chrome-stable --no-install-recom
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY . /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txtCOPY . /app
 
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir selenium python-dotenv chromedriver-binary
