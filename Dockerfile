@@ -1,7 +1,6 @@
-# Используем официальный Python-образ
 FROM python:3.11-slim
 
-# Установим необходимые системные пакеты
+# Системные зависимости
 RUN apt-get update && apt-get install -y \
     wget \
     unzip \
@@ -22,13 +21,12 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-# Установим Chrome
-RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-    apt-get update && apt-get install -y google-chrome-stable && \
-    rm -rf /var/lib/apt/lists/*
+# Установка Google Chrome напрямую
+RUN wget -O /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    apt-get update && apt-get install -y /tmp/google-chrome.deb && \
+    rm /tmp/google-chrome.deb
 
-# Установим ChromeDriver через webdriver-manager (рекомендую вместо ручного скачивания)
+# Установка Python-зависимостей
 RUN pip install --no-cache-dir selenium webdriver-manager python-dotenv
 
 # Копируем код
