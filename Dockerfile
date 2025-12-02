@@ -35,7 +35,7 @@ COPY requirements.txt .
 COPY main.py .
 COPY scripts ./scripts
 COPY Data ./Data
-COPY get_comands.py .
+COPY scripts/get_comands.py .
 
 # Установка зависимостей Python
 RUN pip install --no-cache-dir -r requirements.txt
