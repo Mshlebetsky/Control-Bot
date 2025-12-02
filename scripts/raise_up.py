@@ -26,6 +26,7 @@ def get_chapter_urls():
     return chapters_urls
 def authorization(delay=1):
     safari_ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15'
+    load_dotenv()
     my_login = os.getenv("LOGIN")
     my_pass = os.getenv("PASSWORD")
 
@@ -105,9 +106,3 @@ def inf_upating(delay_ = 40, working_time_ = 5):
         return f'ошибка на {count} повторении'
 
 print(get_chapter_urls())
-load_dotenv()
-
-my_login = os.getenv("LOGIN")
-my_pass = os.getenv("PASSWORD")
-
-print(my_login, my_pass)
