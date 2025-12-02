@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 from scripts.raise_up import  inf_upating
 from scripts import get_comands
 import os
+
+
 load_dotenv()
 bot = telebot.TeleBot(os.getenv("TOKEN"))
 name = None
@@ -20,11 +22,12 @@ def _func(message):
 def raise_up_func_(message):
     try:
         working_time = int(message.text)
-        bot.send_message(message.chat.id, f'Бот начинает работу на {working_time} минут')
     except:
         bot.send_message(message.chat.id, f'Ошибка ввода данных \n{type(message.text)}\n{message.text}')
         return 0
     try:
+        bot.send_message(message.chat.id, f'Бот начинает работу на {working_time} минут (запуск обновлений)')
+
         reply_message = inf_upating(40, working_time)
         bot.send_message(message.chat.id, f'Бот закончил обновление\n{reply_message}')
     except:

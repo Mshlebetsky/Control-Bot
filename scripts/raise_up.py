@@ -10,10 +10,8 @@ def get_chapter_urls():
     chapters_urls = []
     try:
         file = open('../Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
-        # print('1 scenary')
     except:
         file = open('Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
-        # print('2 scenary')
     for line in file:
         # print(line)
         try:
@@ -40,10 +38,10 @@ def authorization(delay=1.5):
 
     try:
         browser = webdriver.Chrome(options=options)
+        print("Браузер запущен")
     except Exception as e:
         print(e)
         quit()
-    print('pre authorization complete')
     try:
         # browser = uc.Chrome()
 
@@ -94,8 +92,9 @@ def update_all_chapters(browser, delay):
 def inf_upating(delay_ = 40, working_time_ = 5):
     delay = delay_
     browser, success = authorization()
+    print("Авторизация пройдена")
     if success:
-        print('authorization complete')
+        print('Обновления начинаются')
         time_start = time.time()
         working_time = working_time_ * 60
         count = 0
@@ -104,14 +103,14 @@ def inf_upating(delay_ = 40, working_time_ = 5):
                 time.sleep(delay)
                 try:
                     update_all_chapters(browser, delay)
-                    print(f'run the {count + 1}  time was successful')
+                    print(f'{count + 1} круг обновлений пройден успешно')
                     delay = delay_
                 except:
                     delay += 1
                     print(f'Error with {count + 1} attemt')
                 count += 1
             browser.close()
-            return f'Обновлено {count} раз за {working_time} минут '
+            return f'Обновлено {count} раз за {working_time//60} минут '
         except:
             return f'ошибка на {count} повторении'
 
