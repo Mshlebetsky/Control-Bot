@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22ce1781-2e0d-4a5b-881f-e5396f0cb870" name="Changes" comment="Stable for docker v.1.67">
+    <list default="true" id="22ce1781-2e0d-4a5b-881f-e5396f0cb870" name="Changes" comment="Stable for docker v.1.8">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/raise_up.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/raise_up.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +38,12 @@
     &quot;assignee&quot;: &quot;Mshlebetsky&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Mshlebetsky/Control-Bot.git",
-    "accountId": "7fcd03c0-9716-4d69-b39c-7627df4fee53"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Mshlebetsky/Control-Bot.git&quot;,
+    &quot;accountId&quot;: &quot;7fcd03c0-9716-4d69-b39c-7627df4fee53&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -47,23 +52,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Bot.executor": "Run",
-    "Python.Tests.executor": "Run",
-    "Python.get_comands.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.open.executor": "Run",
-    "Python.raise_up.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/Mihail/Documents/Python/Bots/ControlBot/pythonProject",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_comands.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.open.executor&quot;: &quot;Run&quot;,
+    &quot;Python.raise_up.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mihail/Documents/Python/Bots/ControlBot/pythonProject&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Control Bot" />
@@ -217,7 +222,31 @@
       <option name="project" value="LOCAL" />
       <updated>1764636817197</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Stable for docker v.1.67 (probably stable)">
+      <option name="closed" value="true" />
+      <created>1764636913542</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1764636913542</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Stable for docker v.1.7">
+      <option name="closed" value="true" />
+      <created>1764637133118</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1764637133118</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Stable for docker v.1.8">
+      <option name="closed" value="true" />
+      <created>1764637194045</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1764637194045</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -252,6 +281,9 @@
     <MESSAGE value="Stable for docker v.1.5" />
     <MESSAGE value="Stable for docker v.1.66" />
     <MESSAGE value="Stable for docker v.1.67" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stable for docker v.1.67" />
+    <MESSAGE value="Stable for docker v.1.67 (probably stable)" />
+    <MESSAGE value="Stable for docker v.1.7" />
+    <MESSAGE value="Stable for docker v.1.8" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stable for docker v.1.8" />
   </component>
 </project>

@@ -1,8 +1,9 @@
 from selenium.webdriver.common.by import By
 import time
-import undetected_chromedriver as uc
+from  selenium import webdriver
 import os
-
+from dotenv import load_dotenv
+from selenium.webdriver.chrome.options import Options
 
 
 def get_chapter_urls():
@@ -28,15 +29,15 @@ def authorization(delay=1):
     my_login = os.getenv("LOGIN")
     my_pass = os.getenv("PASSWORD")
 
-    options = uc.ChromeOptions()
-    options.add_argument(f'user-agent={safari_ua}')
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    options.add_argument('--headless=new')
-
+    options = Options()
+    options.add_argument("--headless")
     options.add_argument("--window-size=1920,1080")
+    options.add_argument("--no-sandbox")
+
     print('pre authorization complete')
     try:
-        browser = uc.Chrome()
+        # browser = uc.Chrome()
+        browser = webdriver.Chrome(options=options)
         main_url = 'https://tl.rulate.ru/'
         browser.get(main_url)
         time.sleep(delay)
@@ -104,3 +105,9 @@ def inf_upating(delay_ = 40, working_time_ = 5):
         return f'ошибка на {count} повторении'
 
 print(get_chapter_urls())
+load_dotenv()
+
+my_login = os.getenv("LOGIN")
+my_pass = os.getenv("PASSWORD")
+
+print(my_login, my_pass)

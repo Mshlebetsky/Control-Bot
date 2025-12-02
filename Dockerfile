@@ -1,53 +1,39 @@
 FROM python:3.12-slim
 
-
-RUN pip install setuptools
-
-# ----------------------------------------------------
-# 1. Устанавливаем системные пакеты + зависимости Chrome
-# ----------------------------------------------------
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    wget curl gnupg ca-certificates unzip xvfb \
-    libglib2.0-0 libnss3 libx11-6 libx11-xcb1 libxcb1 libxcb-render0 \
-    libxcb-shm0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libxi6 \
-    libxtst6 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 libatk1.0-0 \
-    libatk-bridge2.0-0 libdrm2 libgbm1 libasound2 libxkbcommon0 \
-    fonts-liberation libu2f-udev libvulkan1 \
+# Обновление системы и установка зависимостей Chrome
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    unzip \
+    curl \
+    libnss3 \
+    libasound2 \
+    libgbm1 \
+    libxshmfence1 \
+    libx11-xcb1 \
+    fonts-liberation \
     && rm -rf /var/lib/apt/lists/*
 
-# ----------------------------------------------------
-# 2. Добавляем Google Chrome репозиторий (корректный способ)
-# ----------------------------------------------------
-RUN mkdir -p /etc/apt/keyrings \
-    && curl -fsSL https://dl.google.com/linux/linux_signing_key.pub \
-       | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg \
-    && echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] \
-       http://dl.google.com/linux/chrome/deb/ stable main" \
-       > /etc/apt/sources.list.d/google-chrome.list
+# Установка Google Chrome (через .deb, без apt-key)
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb && \
+    apt-get update && apt-get install -y /tmp/chrome.deb && \
+    rm /tmp/chrome.deb
 
-# ----------------------------------------------------
-# 3. Устанавливаем Chrome Stable
-# ----------------------------------------------------
-RUN apt-get update && apt-get install -y google-chrome-stable \
-    && rm -rf /var/lib/apt/lists/*
+# Установка ChromeDriver, совпадающего с Chrome
+RUN CHROME_VERSION=$(google-chrome --version | grep -oP "\d+\.\d+\.\d+\.\d+") && \
+    MAJOR=$(echo $CHROME_VERSION | cut -d '.' -f 1) && \
+    wget -O /tmp/chromedriver.zip \
+        "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chromedriver-linux64.zip" && \
+    unzip /tmp/chromedriver.zip -d /usr/local/bin/ && \
+    mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver && \
+    chmod +x /usr/local/bin/chromedriver && \
+    rm -rf /tmp/*
 
-# ----------------------------------------------------
-# 4. Python зависимости
-# ----------------------------------------------------
-WORKDIR /app
+# Установка питон-пакетов
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-
-
-# ----------------------------------------------------
-# 5. Код приложения
-# ----------------------------------------------------
+WORKDIR /app
 COPY . .
-
-# ----------------------------------------------------
-# 6. Переменная для undetected-chromedriver
-# ----------------------------------------------------
-ENV UC_CHROME_BINARY=/usr/bin/google-chrome
 
 CMD ["python", "main.py"]

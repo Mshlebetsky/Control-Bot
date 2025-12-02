@@ -28,4 +28,7 @@ def raise_up_func_(message):
 
 
 if __name__ == '__main__':
-    bot.infinity_polling(timeout=10, long_polling_timeout=5)
+    bot.infinity_polling(
+        timeout=30,
+        long_polling_timeout=30,
+    )
