@@ -1,11 +1,8 @@
-from calendar import error
-from pydoc import browse
-from webbrowser import Error
-
-from selenium.webdriver import Chrome,ChromeOptions,ChromeService
 from selenium.webdriver.common.by import By
 import time
-from selenium import webdriver
+import undetected_chromedriver as uc
+import os
+
 
 
 def get_chapter_urls():
@@ -28,10 +25,10 @@ def get_chapter_urls():
     return chapters_urls
 def authorization(delay=1):
     safari_ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15'
-    my_login = 'Egor_Litvin'
-    my_pass = '6234m1234M'
+    my_login = os.getenv("LOGIN")
+    my_pass = os.getenv("PASSWORD")
 
-    options = webdriver.ChromeOptions()
+    options = uc.ChromeOptions()
     options.add_argument(f'user-agent={safari_ua}')
     options.add_argument('--disable-blink-features=AutomationControlled')
     options.add_argument('--headless=new')
@@ -39,15 +36,13 @@ def authorization(delay=1):
     options.add_argument("--window-size=1920,1080")
     print('pre authorization complete')
     try:
-        browser = Chrome(options=options)
-        # print('browser downloaded')
+        browser = uc.Chrome()
         main_url = 'https://tl.rulate.ru/'
         browser.get(main_url)
-        # print('browser transfered to url')
         time.sleep(delay)
         browser.find_element(By.XPATH, '/html/body/header/div/div[3]/div[2]/div/button').click()
-    except error:
-        print(f'Error with downl. page {error}')
+    except Exception as e:
+        print(f'Error with downl. page {e}')
         quit()
     try:
         for ch in my_login:

@@ -1,19 +1,10 @@
 import telebot
-import sqlite3
 from scripts.raise_up import  inf_upating
 from scripts import get_comands
 bot = telebot.TeleBot('7598997737:AAFZsXKy7NCQjklYSDVzda7QbwTRaRvkotM')
 name = None
 @bot.message_handler(commands=['start'])
 def start(message):
-    conn = sqlite3.connect('books_inf.sql')
-    cur = conn.cursor()
-    cur.execute(
-        'CREATE TABLE IF NOT EXISTS users (id int auto_increment primary key, name varchar(50), pass varchar(50))'
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
 
 
     show_comands = get_comands.get_help()
@@ -37,5 +28,4 @@ def raise_up_func_(message):
 
 
 if __name__ == '__main__':
-    # bot.polling(non_stop=True)
     bot.infinity_polling(timeout=10, long_polling_timeout=5)

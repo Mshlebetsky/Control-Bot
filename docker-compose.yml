@@ -1,12 +1,13 @@
-version: '3.8'
+version: "3.9"
 
 services:
-  telegram_bot:
+  bot:
     build: .
-    container_name: telegram_bot
-    volumes:
-      - ./Data:/bot/Data
-      - ./books_inf.sql:/bot/books_inf.sql
+    container_name: telegram-raise-up-bot
+    restart: always
     environment:
-      - TZ=Europe/Belgrade
-    restart: unless-stopped
+      - TZ=Europe/Moscow
+    volumes:
+      - ./Data:/app/Data
+    stdin_open: true
+    tty: true
