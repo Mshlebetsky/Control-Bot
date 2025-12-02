@@ -1,117 +1,124 @@
-from selenium.webdriver.common.by import By
-import time
-from  selenium import webdriver
 import os
+import time
 from dotenv import load_dotenv
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+
+# Загружаем .env
+load_dotenv()
+
+LOGIN = os.getenv("LOGIN")
+PASSWORD = os.getenv("PASSWORD")
+
+DATA_DIR = os.path.join(os.getcwd(), "Data")  # рабочая директория в контейнере
 
 
 def get_chapter_urls():
+    file_path_1 = os.path.join(DATA_DIR, 'urls_for_raise_up.txt')
     chapters_urls = []
     try:
-        file = open('../Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
-    except:
-        file = open('Data/urls_for_raise_up.txt', 'r', encoding='utf-8')
-    for line in file:
-        # print(line)
-        try:
-            line = line.split(' ')[0]
-        except:
-            line = line
-        if '\n' in line:
-            line = line[:-1]
-        chapters_urls.append(line)
-    return chapters_urls
-def authorization(delay=1.5):
-    safari_ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15'
-    load_dotenv()
-    my_login = os.getenv("LOGIN")
-    my_pass = os.getenv("PASSWORD")
+        with open(file_path_1, 'r', encoding='utf-8') as file:
+            for line in file:
+                line = line.split(' ')[0].strip()
+                if line:
+                    chapters_urls.append(line)
+        return chapters_urls
+    except Exception as e:
+        print(f"Error reading URLs file: {e}")
+        return []
 
+
+def authorization(delay=1.5):
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--no-sandbox")
-    # options.add_argument("--disable-dev-shm-usage")
-    # options.add_argument("--no-sandbox")
-    # options.add_argument("--disable-gpu")
+    options.add_argument("--disable-dev-shm-usage")
 
     try:
         browser = webdriver.Chrome(options=options)
         print("Браузер запущен")
     except Exception as e:
-        print(e)
-        quit()
-    try:
-        # browser = uc.Chrome()
+        print(f"Ошибка запуска браузера: {e}")
+        return None, False
 
+    try:
         main_url = 'https://tl.rulate.ru/'
         browser.get(main_url)
         time.sleep(delay)
         browser.find_element(By.XPATH, '/html/body/header/div/div[3]/div[2]/div/button').click()
     except Exception as e:
-        print(f'Error with downl. page {e}')
+        print(f"Ошибка при открытии страницы: {e}")
         return browser, False
+
     try:
-        for ch in my_login:
+        for ch in LOGIN:
             browser.find_element(By.NAME, 'login[login]').send_keys(ch)
             time.sleep(0.01 * delay)
-        for ch in my_pass:
+        for ch in PASSWORD:
             browser.find_element(By.NAME, 'login[pass]').send_keys(ch)
             time.sleep(0.01 * delay)
         browser.find_element(By.XPATH, '//*[@id="header-login"]/form/input[3]').click()
         time.sleep(delay)
         return browser, True
-    except:
-        print('Error with entering log/pass')
+    except Exception as e:
+        print(f"Ошибка ввода логина/пароля: {e}")
         return browser, False
-def update_single_chapter(browser, url, delay = 1, temp_delay = 5):
-    browser.get(url)
-    time.sleep(temp_delay * 0.5)
-    browser.find_element(By.XPATH,"//*[@title='Редактировать перевод']").click()
-    textarea = browser.find_element(By.NAME, 'Translation[body]')
-#     print(textarea.text,, len(textarea.text))
-    text_lenght = int(browser.find_element(By.ID,'tr-ccnt').find_elements(By.TAG_NAME, 'b')[1].text)
-    if text_lenght > 100:
-        textarea.clear()
-        for ch in range(1, temp_delay + 2):
+
+
+def update_single_chapter(browser, url, delay=1, temp_delay=5):
+    try:
+        browser.get(url)
+        time.sleep(temp_delay * 0.5)
+        browser.find_element(By.XPATH, "//*[@title='Редактировать перевод']").click()
+        textarea = browser.find_element(By.NAME, 'Translation[body]')
+        text_length = int(browser.find_element(By.ID, 'tr-ccnt').find_elements(By.TAG_NAME, 'b')[1].text)
+        if text_length > 100:
+            textarea.clear()
+            for _ in range(temp_delay + 1):
+                textarea.send_keys(delay)
+        else:
             textarea.send_keys(delay)
-    else:
-        textarea.send_keys(delay)
-    time.sleep(temp_delay)
-    browser.find_element(By.ID, 'sendTranslate').click()
-    time.sleep(temp_delay)
-    return(browser)
+        time.sleep(temp_delay)
+        browser.find_element(By.ID, 'sendTranslate').click()
+        time.sleep(temp_delay)
+    except Exception as e:
+        print(f"Ошибка обновления главы {url}: {e}")
+    return browser
+
+
 def update_all_chapters(browser, delay):
     chapters_urls = get_chapter_urls()
     for chapter in chapters_urls:
-        update_single_chapter(browser, chapter, delay)
+        browser = update_single_chapter(browser, chapter, delay)
         time.sleep(2)
     return browser
 
-def inf_upating(delay_ = 40, working_time_ = 5):
+
+def inf_upating(delay_=40, working_time_=5):
     delay = delay_
     browser, success = authorization()
-    print("Авторизация пройдена")
-    if success:
-        print('Обновления начинаются')
-        time_start = time.time()
-        working_time = working_time_ * 60
-        count = 0
-        try:
-            while (delay < (delay_ + 5)) and (time_start + working_time > time.time()):
-                time.sleep(delay)
-                try:
-                    update_all_chapters(browser, delay)
-                    print(f'{count + 1} круг обновлений пройден успешно')
-                    delay = delay_
-                except:
-                    delay += 1
-                    print(f'Error with {count + 1} attemt')
-                count += 1
-            browser.close()
-            return f'Обновлено {count} раз за {working_time//60} минут '
-        except:
-            return f'ошибка на {count} повторении'
+    if not success:
+        return "Ошибка авторизации"
 
-print(get_chapter_urls())
+    print("Авторизация прошла успешно")
+    print("Начало обновлений...")
+    time_start = time.time()
+    working_time = working_time_ * 60
+    count = 0
+    try:
+        while (delay < (delay_ + 5)) and (time_start + working_time > time.time()):
+            time.sleep(delay)
+            try:
+                update_all_chapters(browser, delay)
+                print(f"{count + 1} круг обновлений прошел успешно")
+                delay = delay_
+            except Exception as e:
+                delay += 1
+                print(f"Ошибка на {count + 1} повторении: {e}")
+            count += 1
+        browser.close()
+        return f"Обновлено {count} раз за {working_time // 60} минут"
+    except Exception as e:
+        return f"Ошибка на {count} повторении: {e}"

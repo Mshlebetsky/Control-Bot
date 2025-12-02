@@ -1,14 +1,15 @@
 version: "3.9"
 
 services:
-  bot:
+  telegram_bot:
     build: .
     container_name: telegram_bot
     restart: always
-    environment:
-      TOKEN: "${TOKEN}"
-      LOGIN: "${LOGIN}"
-      PASSWORD: "${PASSWORD}"
     volumes:
-      - .:/app
-    shm_size: "1gb"
+      - ./Data:/app/Data
+      - ./.env:/app/.env
+    environment:
+      - TOKEN=${TOKEN}
+      - LOGIN=${LOGIN}
+      - PASSWORD=${PASSWORD}
+    network_mode: "bridge"
