@@ -26,8 +26,7 @@ def raise_up_func_(message):
     try:
         working_time = int(message.text)
         bot.send_message(message.chat.id, f'Бот начинает работу на {working_time} минут')
-        # reply_message = raise_up.inf_upating(40, working_time)
-        # reply_message = Tests.iaa()
+
     except:
         bot.send_message(message.chat.id, f'Ошибка ввода данных \n{type(message.text)}\n{message.text}')
         return 0

@@ -34,7 +34,7 @@ def authorization(delay=1):
     options = webdriver.ChromeOptions()
     options.add_argument(f'user-agent={safari_ua}')
     options.add_argument('--disable-blink-features=AutomationControlled')
-    # options.add_argument('--headless=new')
+    options.add_argument('--headless=new')
 
     options.add_argument("--window-size=1920,1080")
     print('pre authorization complete')
@@ -95,7 +95,6 @@ def inf_upating(delay_ = 40, working_time_ = 5):
     try:
         while (delay < (delay_ + 5)) and (time_start + working_time > time.time()):
             time.sleep(delay)
-            count += 1
             try:
                 update_all_chapters(browser, delay)
                 print(f'run the {count}  time was successful')
@@ -108,6 +107,5 @@ def inf_upating(delay_ = 40, working_time_ = 5):
         return f'Обновлено {count} раз за {working_time} минут '
     except:
         return f'ошибка на {count} повторении'
-# inf_upating(40, 20)
-# authorization(3)
+
 print(get_chapter_urls())

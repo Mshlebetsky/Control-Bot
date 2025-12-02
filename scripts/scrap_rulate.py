@@ -13,8 +13,8 @@ from selenium.common.exceptions import NoSuchElementException, WebDriverExceptio
 # --------------------------------------------
 # Настройки
 # --------------------------------------------
-NUM_BROWSERS = 12
-CSV_FILE = "rulate_books.csv"
+NUM_BROWSERS = 8
+CSV_FILE = "../csv/rulate_books.csv"
 BASE_URL = "https://tl.rulate.ru/search/index/t//cat/0/rate_min/0/rate_max/5/rate_quality_min/0/rate_quality_max/5/s_lang/0/t_lang/0/adult/0/type/0/remove_machinelate/0/sort/4/genres_cond/0/tags_cond/0/fandoms_cond/0/fandoms_ex_all/0/n_chapters/0/n_chapters_max//atmosphere/0/Book_page/"
 
 # --------------------------------------------
