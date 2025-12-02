@@ -24,7 +24,7 @@ def get_chapter_urls():
             line = line[:-1]
         chapters_urls.append(line)
     return chapters_urls
-def authorization(delay=1):
+def authorization(delay=1.5):
     safari_ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15'
     load_dotenv()
     my_login = os.getenv("LOGIN")
@@ -45,7 +45,7 @@ def authorization(delay=1):
         browser.find_element(By.XPATH, '/html/body/header/div/div[3]/div[2]/div/button').click()
     except Exception as e:
         print(f'Error with downl. page {e}')
-        quit()
+        return browser, False
     try:
         for ch in my_login:
             browser.find_element(By.NAME, 'login[login]').send_keys(ch)
@@ -55,9 +55,10 @@ def authorization(delay=1):
             time.sleep(0.01 * delay)
         browser.find_element(By.XPATH, '//*[@id="header-login"]/form/input[3]').click()
         time.sleep(delay)
-        return browser
+        return browser, True
     except:
         print('Error with entering log/pass')
+        return browser, False
 def update_single_chapter(browser, url, delay = 1, temp_delay = 5):
     browser.get(url)
     time.sleep(temp_delay * 0.5)
@@ -84,25 +85,26 @@ def update_all_chapters(browser, delay):
 
 def inf_upating(delay_ = 40, working_time_ = 5):
     delay = delay_
-    browser = authorization()
-    print('authorization complete')
-    time_start = time.time()
-    working_time = working_time_ * 60
-    count = 0
-    try:
-        while (delay < (delay_ + 5)) and (time_start + working_time > time.time()):
-            time.sleep(delay)
-            try:
-                update_all_chapters(browser, delay)
-                print(f'run the {count}  time was successful')
-                delay = delay_
-            except:
-                delay += 1
-                print(f'Error with {count} attemt')
-            count += 1
-        browser.close()
-        return f'Обновлено {count} раз за {working_time} минут '
-    except:
-        return f'ошибка на {count} повторении'
+    browser, success = authorization()
+    if success:
+        print('authorization complete')
+        time_start = time.time()
+        working_time = working_time_ * 60
+        count = 0
+        try:
+            while (delay < (delay_ + 5)) and (time_start + working_time > time.time()):
+                time.sleep(delay)
+                try:
+                    update_all_chapters(browser, delay)
+                    print(f'run the {count + 1}  time was successful')
+                    delay = delay_
+                except:
+                    delay += 1
+                    print(f'Error with {count + 1} attemt')
+                count += 1
+            browser.close()
+            return f'Обновлено {count} раз за {working_time} минут '
+        except:
+            return f'ошибка на {count} повторении'
 
 print(get_chapter_urls())
