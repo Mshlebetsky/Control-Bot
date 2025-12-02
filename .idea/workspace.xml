@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22ce1781-2e0d-4a5b-881f-e5396f0cb870" name="Changes" comment="Stable for docker v.1.8">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/raise_up.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/raise_up.py" afterDir="false" />
-    </list>
+    <list default="true" id="22ce1781-2e0d-4a5b-881f-e5396f0cb870" name="Changes" comment="Stable for docker v.1.222" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -246,7 +239,111 @@
       <option name="project" value="LOCAL" />
       <updated>1764637194045</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Stable for docker v.1.9">
+      <option name="closed" value="true" />
+      <created>1764638964006</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1764638964006</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Stable for docker v.1.99">
+      <option name="closed" value="true" />
+      <created>1764639161799</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1764639161799</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Stable for docker v.1.99">
+      <option name="closed" value="true" />
+      <created>1764639262799</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1764639262799</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Stable for docker v.1.999 (hopefully final)">
+      <option name="closed" value="true" />
+      <created>1764640974268</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1764640974268</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Stable for docker v.1.9999 (hopefully final)">
+      <option name="closed" value="true" />
+      <created>1764641222266</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1764641222266</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Stable for docker v.1.99999 (hopefully final)">
+      <option name="closed" value="true" />
+      <created>1764641416642</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1764641416642</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Stable for docker v.1.10 (hopefully final)">
+      <option name="closed" value="true" />
+      <created>1764641494948</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1764641494948</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Stable for docker v.1.11 (hopefully final)">
+      <option name="closed" value="true" />
+      <created>1764642445028</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1764642445028</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Stable for docker v.1.12 (hopefully final)">
+      <option name="closed" value="true" />
+      <created>1764642641822</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1764642641822</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Stable for docker v.1.13 (hopefully final)">
+      <option name="closed" value="true" />
+      <created>1764642741243</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1764642741243</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Stable for docker v.1.20">
+      <option name="closed" value="true" />
+      <created>1764643424890</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1764643424890</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Stable for docker v.1.21">
+      <option name="closed" value="true" />
+      <created>1764643564165</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1764643564165</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Stable for docker v.1.222">
+      <option name="closed" value="true" />
+      <created>1764644095616</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1764644095616</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -284,6 +381,18 @@
     <MESSAGE value="Stable for docker v.1.67 (probably stable)" />
     <MESSAGE value="Stable for docker v.1.7" />
     <MESSAGE value="Stable for docker v.1.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stable for docker v.1.8" />
+    <MESSAGE value="Stable for docker v.1.9" />
+    <MESSAGE value="Stable for docker v.1.99" />
+    <MESSAGE value="Stable for docker v.1.999 (hopefully final)" />
+    <MESSAGE value="Stable for docker v.1.9999 (hopefully final)" />
+    <MESSAGE value="Stable for docker v.1.99999 (hopefully final)" />
+    <MESSAGE value="Stable for docker v.1.10 (hopefully final)" />
+    <MESSAGE value="Stable for docker v.1.11 (hopefully final)" />
+    <MESSAGE value="Stable for docker v.1.12 (hopefully final)" />
+    <MESSAGE value="Stable for docker v.1.13 (hopefully final)" />
+    <MESSAGE value="Stable for docker v.1.20" />
+    <MESSAGE value="Stable for docker v.1.21" />
+    <MESSAGE value="Stable for docker v.1.222" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stable for docker v.1.222" />
   </component>
 </project>
