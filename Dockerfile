@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
 
-RUN apt-get update && apt-get install -y python3-distutils
+RUN pip install setuptools
 
 # ----------------------------------------------------
 # 1. Устанавливаем системные пакеты + зависимости Chrome
