@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 import time
 from  selenium import webdriver
 import os
-import chromedriver_binary  # добавляет chromedriver в PATH
 from dotenv import load_dotenv
 from selenium.webdriver.chrome.options import Options
 
