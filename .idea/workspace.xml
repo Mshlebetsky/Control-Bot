@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22ce1781-2e0d-4a5b-881f-e5396f0cb870" name="Changes" comment="Second Try">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Control Bot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Control Bot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/comands.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ii.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ii.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/raise_up.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/raise_up.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scrap_rulate.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrap_rulate.py" afterDir="false" />
+    <list default="true" id="22ce1781-2e0d-4a5b-881f-e5396f0cb870" name="Changes" comment="Stable for docker">
+      <change afterPath="$PROJECT_DIR$/Dockerile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +122,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728832445392</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Stable for docker">
+      <option name="closed" value="true" />
+      <created>1764634596580</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764634596580</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Stable for docker">
+      <option name="closed" value="true" />
+      <created>1764634615148</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764634615148</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,6 +165,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Try" />
     <MESSAGE value="Second Try" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second Try" />
+    <MESSAGE value="Stable for docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stable for docker" />
   </component>
 </project>
