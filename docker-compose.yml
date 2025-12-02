@@ -1,16 +1,15 @@
-version: "3.9"
+version: '3.9'
 
 services:
-  bot:
+  raise_up_bot:
     build: .
-    container_name: telegram-raise-up-bot
-    restart: always
-    environment:
-      - TZ=Europe/Moscow
-      - LOGIN=Egor_Litvin
-      - PASSWORD=6234m1234M
-
+    container_name: raise_up_bot
     volumes:
       - ./Data:/app/Data
+      - ./scripts:/app/scripts
+      - ./.env:/app/.env:ro
+    environment:
+      - LOGIN=${LOGIN}
+      - PASSWORD=${PASSWORD}
     stdin_open: true
     tty: true

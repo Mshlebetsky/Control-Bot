@@ -1,39 +1,68 @@
+# Используем официальный Python 3.12 slim
 FROM python:3.12-slim
 
-# Обновление системы и установка зависимостей Chrome
+# ----------------------------------------------------
+# Установка необходимых утилит и Chrome
+# ----------------------------------------------------
 RUN apt-get update && apt-get install -y \
     wget \
-    gnupg \
     unzip \
     curl \
-    libnss3 \
-    libasound2 \
-    libgbm1 \
-    libxshmfence1 \
-    libx11-xcb1 \
+    gnupg \
+    ca-certificates \
     fonts-liberation \
-    && rm -rf /var/lib/apt/lists/*
+    libnss3 \
+    libxss1 \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    libx11-xcb1 \
+    libxcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    xdg-utils \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
-# Установка Google Chrome (через .deb, без apt-key)
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb && \
-    apt-get update && apt-get install -y /tmp/chrome.deb && \
-    rm /tmp/chrome.deb
+# Добавляем репозиторий Google Chrome
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-linux-signing-key.gpg
+RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-linux-signing-key.gpg] http://dl.google.com/linux/chrome/deb/ stable main" \
+    > /etc/apt/sources.list.d/google-chrome.list
 
-# Установка ChromeDriver, совпадающего с Chrome
-RUN CHROME_VERSION=$(google-chrome --version | grep -oP "\d+\.\d+\.\d+\.\d+") && \
-    MAJOR=$(echo $CHROME_VERSION | cut -d '.' -f 1) && \
-    wget -O /tmp/chromedriver.zip \
-        "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chromedriver-linux64.zip" && \
+RUN apt-get update && apt-get install -y \
+    google-chrome-stable \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Устанавливаем ChromeDriver через wget
+RUN CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1) && \
+    wget -O /tmp/chromedriver.zip "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${CHROME_VERSION}/linux64/chromedriver-linux64.zip" && \
     unzip /tmp/chromedriver.zip -d /usr/local/bin/ && \
-    mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver && \
-    chmod +x /usr/local/bin/chromedriver && \
-    rm -rf /tmp/*
+    rm /tmp/chromedriver.zip && \
+    chmod +x /usr/local/bin/chromedriver
 
-# Установка питон-пакетов
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
+# ----------------------------------------------------
+# Рабочая директория
+# ----------------------------------------------------
 WORKDIR /app
-COPY . .
 
-CMD ["python", "main.py"]
+# Копируем проект
+COPY . /app
+
+# ----------------------------------------------------
+# Устанавливаем зависимости Python
+# ----------------------------------------------------
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir selenium python-dotenv
+
+# ----------------------------------------------------
+# Переменные окружения (по желанию)
+# ----------------------------------------------------
+# ENV LOGIN=your_login
+# ENV PASSWORD=your_password
+
+# ----------------------------------------------------
+# Команда запуска
