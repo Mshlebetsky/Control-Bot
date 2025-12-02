@@ -1,5 +1,7 @@
-FROM python:3.12-slim
+# Используем официальный Python-образ
+FROM python:3.11-slim
 
+# Установим необходимые системные пакеты
 RUN apt-get update && apt-get install -y \
     wget \
     unzip \
@@ -8,33 +10,30 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     fonts-liberation \
     libnss3 \
-    libxss1 \
-    libasound2 \
-    libatk-bridge2.0-0 \
-    libgtk-3-0 \
     libx11-xcb1 \
-    libxcb1 \
     libxcomposite1 \
     libxcursor1 \
     libxdamage1 \
-    libxrandr2 \
-    libgbm1 \
+    libxi6 \
+    libxtst6 \
     xdg-utils \
+    libglib2.0-0 \
+    libgtk-3-0 \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-# Устанавливаем Chrome
-RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-linux-signing-key.gpg
-RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-linux-signing-key.gpg] http://dl.google.com/linux/chrome/deb/ stable main" \
-    > /etc/apt/sources.list.d/google-chrome.list
-RUN apt-get update && apt-get install -y google-chrome-stable --no-install-recommends && \
+# Установим Chrome
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && apt-get install -y google-chrome-stable && \
     rm -rf /var/lib/apt/lists/*
 
+# Установим ChromeDriver через webdriver-manager (рекомендую вместо ручного скачивания)
+RUN pip install --no-cache-dir selenium webdriver-manager python-dotenv
+
+# Копируем код
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txtCOPY . /app
+COPY . /app
 
-RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir selenium python-dotenv chromedriver-binary
-
+# Запуск скрипта
 CMD ["python", "scripts/raise_up.py"]

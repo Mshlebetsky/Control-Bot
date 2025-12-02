@@ -1,6 +1,8 @@
 version: "3.9"
 services:
   raise_up_bot:
+    build: .
+    container_name: raise_up_bot
     image: selenium/standalone-chrome:latest
     volumes:
       - ./Data:/app/Data
