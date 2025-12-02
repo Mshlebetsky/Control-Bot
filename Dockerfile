@@ -1,14 +1,12 @@
 FROM python:3.11-slim
 
-# Не спрашивать подтверждений
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Устанавливаем зависимости для Chrome и Selenium
+# Библиотеки для Chrome
 RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
     unzip \
-    curl \
     xvfb \
     fonts-liberation \
     libu2f-udev \
@@ -24,30 +22,23 @@ RUN apt-get update && apt-get install -y \
     libdrm2 \
     && rm -rf /var/lib/apt/lists/*
 
-# Устанавливаем Google Chrome Stable
-RUN wget -q -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && apt-get update \
-    && apt-get install -y ./chrome.deb \
+# 👉 Устанавливаем стабильную версию Chrome 131
+RUN wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_131.0.6778.85-1_amd64.deb -O chrome.deb \
+    && apt-get update && apt-get install -y ./chrome.deb \
     && rm chrome.deb
 
-# Устанавливаем chromedriver под установленный Chrome
-RUN CHROME_VERSION=$(google-chrome --version | grep -oP '[0-9]+' | head -1) \
-    && echo "Chrome major version: $CHROME_VERSION" \
-    && wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${CHROME_VERSION}.0.0/linux64/chromedriver-linux64.zip" -O /tmp/chromedriver.zip \
+# 👉 Устанавливаем chromedriver 131
+RUN wget -q https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/131.0.6778.85/linux64/chromedriver-linux64.zip -O /tmp/chromedriver.zip \
     && unzip /tmp/chromedriver.zip -d /tmp/ \
     && mv /tmp/chromedriver-linux64/chromedriver /usr/bin/chromedriver \
     && chmod +x /usr/bin/chromedriver \
     && rm -rf /tmp/chromedriver*
 
-
-# Создаем рабочую директорию
 WORKDIR /app
 
-# Устанавливаем Python зависимости
-COPY requirements.txt /app/
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем код бота
-COPY . /app/
+COPY . .
 
 CMD ["python", "main.py"]

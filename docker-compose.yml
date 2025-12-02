@@ -6,10 +6,9 @@ services:
     container_name: telegram_bot
     restart: always
     environment:
-      TOKEN: "7598997737:AAFZsXKy7NCQjklYSDVzda7QbwTRaRvkotM"
+      TOKEN: "${TOKEN}"
       LOGIN: "${LOGIN}"
       PASSWORD: "${PASSWORD}"
     volumes:
       - .:/app
-    # Чтобы Chrome работал без ошибок
     shm_size: "1gb"
