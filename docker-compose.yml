@@ -1,14 +1,12 @@
-version: '3.9'
+version: '3.8'
 
 services:
   telegram_bot:
     build: .
     container_name: telegram_bot
-    restart: always
     volumes:
-      - ./Data:/app/Data
-      - ./books_inf.sql:/app/books_inf.sql
+      - ./Data:/bot/Data
+      - ./books_inf.sql:/bot/books_inf.sql
     environment:
-      - BOT_TOKEN=7598997737:AAFZsXKy7NCQjklYSDVzda7QbwTRaRvkotM
-    stdin_open: true
-    tty: true
+      - TZ=Europe/Belgrade
+    restart: unless-stopped
