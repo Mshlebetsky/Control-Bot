@@ -35,11 +35,15 @@ def authorization(delay=1.5):
     options.add_argument("--headless")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--no-sandbox")
-
+    try:
+        browser = webdriver.Chrome(options=options)
+    except Exception as e:
+        print(e)
+        quit()
     print('pre authorization complete')
     try:
         # browser = uc.Chrome()
-        browser = webdriver.Chrome(options=options)
+
         main_url = 'https://tl.rulate.ru/'
         browser.get(main_url)
         time.sleep(delay)
