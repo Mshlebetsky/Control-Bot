@@ -1,15 +1,15 @@
 version: "3.9"
+
 services:
-  raise_up_bot:
+  bot:
     build: .
-    container_name: raise_up_bot
-    image: selenium/standalone-chrome:latest
-    volumes:
-      - ./Data:/app/Data
-      - ./scripts:/app/scripts
-      - ./.env:/app/.env:ro
+    container_name: telegram_bot
+    restart: always
     environment:
-      - LOGIN=${LOGIN}
-      - PASSWORD=${PASSWORD}
-    command: >
-      sh -c "python /app/scripts/raise_up.py"
+      TOKEN: "7598997737:AAFZsXKy7NCQjklYSDVzda7QbwTRaRvkotM"
+      LOGIN: "${LOGIN}"
+      PASSWORD: "${PASSWORD}"
+    volumes:
+      - .:/app
+    # Чтобы Chrome работал без ошибок
+    shm_size: "1gb"
